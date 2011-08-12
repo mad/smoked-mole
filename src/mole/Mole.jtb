@@ -1,0 +1,9 @@
+/**
+ * JTB template file created by SF JavaCC plugin 1.5.17+ wizard for JTB 1.4.0.2+ and JavaCC 1.5.0+
+ */options{  JDK_VERSION = "1.5";  static = false;}PARSER_BEGIN(eg3)package mole;
+import mole.visitor.*;
+
+import mole.compiler.Compiler;
+
+public class eg3{}class MyVisitor extends DepthFirstVoidVisitor{  public void visit(NodeToken n)  {    System.out.println("visit " + n.tokenImage);  }}PARSER_END(eg3)SKIP :{  " "| "\t"| "\n"| "\r"| < "//" (~[ "\n", "\r" ])*    (      "\n"    | "\r"    | "\r\n"    ) >| < "/*" (~[ "*" ])* "*"    (      ~[ "/" ] (~[ "*" ])* "*"    )*    "/" >}TOKEN : /* LITERALS */{  < INTEGER_LITERAL :    < DECIMAL_LITERAL > ([ "l", "L" ])?  | < HEX_LITERAL > ([ "l", "L" ])?  | < OCTAL_LITERAL > ([ "l", "L" ])?     >| < #DECIMAL_LITERAL : [ "1"-"9" ] ([ "0"-"9" ])* >| < #HEX_LITERAL : "0" [ "x", "X" ] ([ "0"-"9", "a"-"f", "A"-"F" ])+ >| < #OCTAL_LITERAL : "0" ([ "0"-"7" ])* >}TOKEN : /* IDENTIFIERS */{  < IDENTIFIER :    < LETTER >    (      < LETTER >    | < DIGIT >    )* >| < #LETTER : [ "_", "a"-"z", "A"-"Z" ] >| < #DIGIT : [ "0"-"9" ] >}void Start() :{}{  (    Expression() ";"
+  )*}void Expression() :{}{  AdditiveExpression()}void AdditiveExpression() :{}{  MultiplicativeExpression()  (    (      "+"    | "-"    )    MultiplicativeExpression()  )*}void MultiplicativeExpression() :{}{  UnaryExpression()  (    (      "*"    | "/"    | "%"    )    UnaryExpression()  )*}void UnaryExpression() :{}{  "(" Expression() ")"| Identifier()| MyInteger()}void Identifier() :{}{  < IDENTIFIER >}void MyInteger() :{}{  < INTEGER_LITERAL >}
