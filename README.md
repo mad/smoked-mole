@@ -1,6 +1,6 @@
 This code convert simple math to bytecode
 
-$ java Mole <sm file>
+`$ java Mole <sm file>`
 
 after that, generated RunnableMath.class with some methods
 
