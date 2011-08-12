@@ -45,3 +45,13 @@ Bytecode:
 
 }
 ```
+
+
+NOTE:
+
+When wrong package path, try using `JTB_OPTIONS=-p mole` in
+`.settings/sf.eclipse.javacc.prefs`
+
+or
+
+Append ` -p mole` to `Properties->JavaCC Options->jtb options->JTB_OPTIONS`
